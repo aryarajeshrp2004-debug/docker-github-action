@@ -12,5 +12,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Use GitHub Secret
+        env:
+          MY_SECRET: ${{ secrets.MY_SECRET }}
+        run: |
+          echo "GitHub Secret is available securely."
+          echo "Secret length: ${#MY_SECRET}"
+
       - name: Build Docker Image
         run: docker build -t my-app-image .
